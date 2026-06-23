@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# ── FFmpeg setup ─────────────────────────────────────────────────────────────
+#  FFmpeg setup 
 from config.settings import FFMPEG_DIR, CHUNK_LENGTH_SEC, OFFSET_SEC, TARGET_SAMPLE_RATE
 
 if FFMPEG_DIR not in os.environ.get("PATH", ""):
@@ -41,18 +41,18 @@ def predict_emotions_from_file(file_path: str) -> dict:
 
     with tempfile.TemporaryDirectory() as tmpdir:
 
-        # 1 ── Convert to WAV ─────────────────────────────────────────────────
+        # 1 - Converting to WAV ─
         wav_path = prepare_audio(file_path)
 
-        # 2 ── Resample to 16 kHz ─────────────────────────────────────────────
+        # 2 - Resampling to 16 kHz ─
         y16, _ = librosa.load(wav_path, sr=TARGET_SAMPLE_RATE)
         resampled_path = os.path.join(tmpdir, "resampled.wav")
         sf.write(resampled_path, y16, TARGET_SAMPLE_RATE)
 
-        # 3 ── Load audio for feature extraction ─────────────────────────────
+        # 3 - Loading audio for feature extraction ─
         data, sr = librosa.load(resampled_path, sr=TARGET_SAMPLE_RATE)
 
-        # 4 ── Split into 15-sec chunks ───────────────────────────────────────
+        # 4 - Splitting into 15-sec chunks ─
         segment_length = CHUNK_LENGTH_SEC * sr
         offset_samples = int(OFFSET_SEC * sr)
 
@@ -65,7 +65,7 @@ def predict_emotions_from_file(file_path: str) -> dict:
         if not audio_chunks:
             raise RuntimeError("No audio chunks could be extracted from the file.")
 
-        # 5 ── Predict emotion per chunk ──────────────────────────────────────
+        # 5 - Predicting emotion per chunk 
         predictions = []
         for idx, chunk in enumerate(audio_chunks):
             if len(chunk) == 0 or np.max(np.abs(chunk)) == 0:

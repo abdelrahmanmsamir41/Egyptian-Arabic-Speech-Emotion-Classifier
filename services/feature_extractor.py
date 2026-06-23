@@ -6,7 +6,7 @@ from config.settings import (
     TIME_MASK_WIDTH, TIME_MASK_COUNT, FREQ_MASK_WIDTH, FREQ_MASK_COUNT,
 )
 
-# ── Augmentations ────────────────────────────────────────────────────────────
+#  Augmentations 
 
 def noise(data: np.ndarray, snr_low: int = SNR_LOW, snr_high: int = SNR_HIGH) -> np.ndarray:
     """Add random Gaussian noise at a random SNR level."""
@@ -67,7 +67,7 @@ def frequency_masking(
     return _apply_stft_mask(data, axis=0, mask_width=mask_width, mask_count=mask_count)
 
 
-# ── Feature extraction ───────────────────────────────────────────────────────
+#  Feature extraction 
 
 def zcr(data: np.ndarray) -> np.ndarray:
     return np.squeeze(
