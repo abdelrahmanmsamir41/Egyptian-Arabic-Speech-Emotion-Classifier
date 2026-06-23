@@ -1,0 +1,9 @@
+torch
+torchaudio
+librosa
+soundfile
+numpy
+moviepy
+pydub
+joblib
+python-dotenv
