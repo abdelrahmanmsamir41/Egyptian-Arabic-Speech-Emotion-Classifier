@@ -34,10 +34,26 @@ speech-emotion-recognition-project/
 ├── docs/
 │   └── pipeline_flow.md     # Mermaid flow diagram
 ├── tests/
+├── Training process.ipynb   # notebook used to train the model
 ├── .env.example
 ├── requirements.txt
 └── README.md
 ```
+
+---
+
+## Training notebook
+
+`Training process.ipynb` is the project’s model development notebook. It contains:
+
+- dataset loading and combination of `EAED.csv` and `EYASE_emotions.csv`
+- audio duration checks, empty file cleanup, and label mapping
+- data augmentation routines (noise, time stretch, shift, pitch shift, time/frequency masking)
+- feature extraction for ZCR, RMSE, MFCC, and Mel spectrograms
+- model comparison across classifiers and balanced training experiments
+- Random Forest training, evaluation, and saving of the final model/scaler artifacts
+
+This notebook is intended for exploration and training, not the production inference pipeline.
 
 ---
 
