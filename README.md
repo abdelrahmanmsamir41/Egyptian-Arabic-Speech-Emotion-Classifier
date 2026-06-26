@@ -60,7 +60,7 @@ This notebook is intended for exploration and training, not the production infer
 ## Setup
 
 ```bash
-git clone https://github.com/<your-username>/speech-emotion-recognition-project.git
+git clone https://github.com/abdelrahmanmsamir41/Egyptian-Arabic-Speech-Emotion-Classifier.git
 cd speech-emotion-recognition-project
 pip install -r requirements.txt
 cp .env.example .env   # then fill in the paths
